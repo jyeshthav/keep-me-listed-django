@@ -1,0 +1,15 @@
+<nav class="nav-wrapper pink darken-3">
+    <div class="container">
+        <a href="/" class="brand-logo">KeepMeListed</a> 
+        <ul class="right">
+            {% if user.is_authenticated %}
+                <li><a href="/homepage">Home</a></li>
+                <!-- <li><a href="#" id="dashboard">{{ user.username }}</a></li> -->
+                <li><a href="/logout" id="logout">Logout</a></li>
+            {% else %}
+                <li><a href="/register" id="register">Sign up</a></li>
+                <li><a href="/login" id="login">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>  
+</nav>

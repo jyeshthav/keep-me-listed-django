@@ -1,0 +1,76 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<div class="container">
+    {% if user.is_authenticated %}
+    <div class="row">
+        <div class="col s6">
+            <h4>{{ user.username }}'s Lists</h4>
+        </div>
+        <div class="col s3">
+            <div class="switch">
+                <h4><label>Sort by:</label>
+                <label>
+                    Due Date
+                    <input type="checkbox">
+                    <span class="lever"></span>
+                    Priority
+                </label>
+                </h4>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="container center">
+                <h4>
+                    <a href="/list_form" class="waves-effect waves-light btn pink darken-3"><i class="material-icons left">add</i>List</a>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for l in lists %}
+            <div class="col s4">
+                <div class="card cyan lighten-4">
+                    <form action='/delete_list' method='GET'>
+                        <input type="hidden" name="list_name" value="{{ l.list_name }}"></input>
+                    <button class="waves-effect waves-teal btn-flat right"><i class="material-icons">remove</i></button> 
+                    </form>
+                    <div class="card-content">
+                        <span class="card-title">{{ l.list_name }}</span>
+                        <p>{{ l.list_summary }}</p>
+                    </div>
+                    <div class="card-action cyan lighten-3"> 
+                        <ul class="collection">
+                            {% for t in tasks %}
+                                {% if t.task_list == l.list_name %}
+                                <li class="collection-item cyan lighten-5" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
+                                    <span class="task">{{ t.task_title }}</span>
+                                    <form action='/delete_task' method='GET'>
+                                        <input type="hidden" name="task_title" value="{{ t.task_title }}"></input>
+                                        <input type="hidden" name="task_list" value="{{ t.task_list }}"></input>
+                                        <button type='submit' class='btn-small cyan darken-3 right'><i class="material-icons">remove</i></button>
+                                    </form>
+                                    <p class="grey-text" name="due">{{ t.task_due }}</p>
+                                    <p class="grey-text">{{ t.task_priority }}</p>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        <form action='/task_form' method='GET'>
+                        <input type="hidden" name="task_list" value="{{ l.list_name }}"></input>
+                        <button type='submit' class='btn-floating pink darken-3 right'><i class="material-icons">add</i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>  
+    {% else %}
+    <div class="row">
+        <div class="col s6 green">
+            <h4>User not authenticated</h4>
+        </div>
+    </div>
+    {% endif %}  
+</div> 
+{% endblock %}
