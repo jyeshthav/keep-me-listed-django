@@ -1,0 +1,5 @@
+Django==3.0.4
+django-materializecss-form==1.1.17
+django-tinymce4-lite==1.7.5
+django-heroku
+gunicorn
