@@ -2,17 +2,21 @@
 
 {% block content %}
 <div class="container">
-    <div class="center">
+    <div class="row center">
+        <div class="col s3"></div>
+        <div class="col s6">
         <h3>Sign up here!</h3>
+        {% load materializecss %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|materializecss }}
+            <div class="center">
+                <button type="submit" class="btn pink darken-3 center">Register</button>
+            </div>
+        </form>
+        If you are already a registered user, click here to <a href="/login">Login</a>
     </div>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="center">
-            <button type="submit" class="btn pink darken-3 center">Register</button>
-        </div>
-    </form>
-    If you are already a registered user, click here to <a href="/login">Login</a>
+    <div class="col s3"></div>
 </div>
 
 {% endblock %}

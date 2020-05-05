@@ -2,17 +2,20 @@
 
 {% block content %}
 <div class="container">
-    <div class="center">
+    <div class="row center">
+        <div class="col s3"></div>
+        <div class="col s6">
         <h3>Add new list</h3>
-    </div>
-    {% load materializecss %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form|materializecss }}
-        <div class="center">
-            <button type="submit" class="btn pink darken-3 center">Create List</button>
+        {% load materializecss %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|materializecss }}
+            <div class="center">
+                <button type="submit" class="btn pink darken-3 center">Create List</button>
+            </div>
+        </form>
         </div>
-    </form>
+        <div class="col s3"></div>
 </div>
 
 {% endblock %}

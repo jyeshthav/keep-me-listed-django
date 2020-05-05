@@ -1,13 +1,33 @@
-{% extends "main/header.html" %}
+<head>
+    {% load static %}
+    <!-- <link rel="stylesheet" href="{% static 'tinymce/css/prism.css' %}"> -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/materialize.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
 
-{% block content %}
-<div class="container">
-    <p>Landing page</p>
-    {% if user.is_authenticated %}
-        <h3>Welcome, {{ user.username }}</h3>
-    {% else %}
-        <h3>Logged out</h3>
-    {% endif %}
-</div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-{% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'main/js/main.js' %}"></script>
+            
+</head>
+
+<body>
+
+    {% include "main/includes/navbar.html" %}
+
+    {% include "main/includes/messages.html" %}
+        <div class="container user">
+            {% if user.is_authenticated %}
+                <h3>Welcome, {{ user.username }}</h3>
+            {% else %}
+                <h3>Logged out</h3>
+            {% endif %}
+        </div>
+    </div>
+<!-- <img src="{% static 'main/img/camera.jpg' %}" class="responsive-img"> -->
+
+</body>

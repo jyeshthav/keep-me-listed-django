@@ -1,0 +1,33 @@
+$colors :(
+    nav: #ad1457,
+    bg: aliceblue,
+    cont: #bbdefb
+);
+
+body, html{
+    height: 100%;
+}
+body {
+    background-color: map-get($map: $colors, $key: bg);
+    background-image: url('./../img/landing.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    
+    .user{
+        color: white;
+    }
+
+    .navbar{
+        background-color: transparent;
+    }
+
+    .messages{
+        background-color: transparent;
+    }
+}

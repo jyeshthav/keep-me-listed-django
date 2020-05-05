@@ -19,7 +19,7 @@ def homepage(request):
     data = {'lists':Lists.objects.filter(list_owner=request.user), 'tasks':Tasklist.objects.filter(task_owner=request.user).order_by('task_due'),
                 'user': request.user}
     return render(request = request,
-                    template_name = "main/home.html",
+                    template_name = "main/dash.html",
                     context=data)
 
 def register(request):
@@ -31,7 +31,7 @@ def register(request):
             messages.success(request, f"Account created for: {username}")
             login(request, user)
             messages.info(request, f"You are now logged in as: {username}")
-            return redirect('/')
+            return redirect('/homepage')
 
         else:
             for msg in form.error_messages:
@@ -61,9 +61,7 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f"You are now logged in as {username}")
-                return render(request = request,
-                            template_name = "main/index.html",
-                            context={"user":user})
+                return redirect('/homepage')
             else:
                 messages.error(request, "Invalid username or password.")
         else:
@@ -128,6 +126,11 @@ def delete_list(request):
     user = request.user
     tlist = request.GET.get('list_name')
     del_list = get_object_or_404(Lists, list_name=tlist, list_owner=user)
+    tasks = Tasklist.objects.filter(task_list=del_list)
+    for t in tasks:
+        delt = get_object_or_404(Tasklist, task_title=t.task_title, task_list=del_list)
+        delt.delete()
+
     del_list.delete()     
     return redirect('/homepage')
 
@@ -144,12 +147,12 @@ def status(request):
         elif status == '1':
             upd_task.task_status = 0
             upd_task.save()
-        # return render(request = request,
-        #             template_name = "main/dummy.html",
-        #             context={'user': request.user, 'msg': status})
         return HttpResponse(upd_task.task_status)
 
 def sortby(request):
     if request.method == 'POST':
-        data = {Tasklist.objects.filter(task_owner=request.user).order_by('-task_priority')}
-        return HttpResponse(data)
+        data = {'lists':Lists.objects.filter(list_owner=request.user), 'tasks':Tasklist.objects.filter(task_owner=request.user).order_by('-task_priority'),
+                'user': request.user}
+        return render(request = request,
+                    template_name = "main/lists.html",
+                    context=data)

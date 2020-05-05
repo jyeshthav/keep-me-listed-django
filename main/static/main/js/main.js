@@ -40,7 +40,6 @@ $(document).ready(function(){
 
     $("input[type=checkbox]").change(function() {
         if($(this).is(":checked")) {
-            console.log("Is checked");
             $.ajax({
                 type: 'POST',
                 url: '/sortby',
@@ -48,12 +47,21 @@ $(document).ready(function(){
                     request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
                 },
                 success: function(result){
-                    console.log(result)
+                    $('.list-container').html(result)
                 },
             });
         }
         else {
-          console.log("Is Not checked");
+          $.ajax({
+            type: 'POST',
+            url: '/homepage',
+            beforeSend:function (request) {
+                request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            },
+            success: function(result){
+                location.reload();                
+            },
+        });
         }
       });
 

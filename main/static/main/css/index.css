@@ -1,0 +1,29 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  background-color: aliceblue;
+  background-image: url("./../img/try1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+body .user {
+  color: white;
+}
+
+body .navbar {
+  background-color: transparent;
+}
+
+body .messages {
+  background-color: transparent;
+}
+/*# sourceMappingURL=index.css.map */

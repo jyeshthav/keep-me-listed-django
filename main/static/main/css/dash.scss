@@ -1,0 +1,57 @@
+$colors :(
+    nav: #ad1457,
+    bg: aliceblue,
+    list: #b2ebf2,
+    task: #80deea
+);
+
+body, html{
+    height: 100%;
+}
+body {
+    background-color: map-get($map: $colors, $key: bg);
+    background-image: url('./../img/dash.jpg');
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    color: white;
+
+    .navbar{
+        background-color: transparent;
+        color: black;
+    }
+
+    .messages{
+        background-color: transparent;
+    }
+
+    .list-container{
+        color: black;
+    }
+
+    .list{
+        background-color: map-get($map: $colors, $key: list);
+        // opacity: 0.75;
+
+        .task-cont{
+            background-color: map-get($map: $colors, $key: task);
+            // opacity: 1.5;
+        }
+
+        .checked{
+            color: #aaa;
+            text-decoration: line-through;
+        }
+        
+        .task{
+            cursor: pointer;
+        }
+    }
+
+    
+}
