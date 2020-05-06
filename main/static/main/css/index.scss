@@ -9,7 +9,7 @@ body, html{
 }
 body {
     background-color: map-get($map: $colors, $key: bg);
-    background-image: url('./../img/landing.jpg');
+    background-image: url('/static/main/img/landing.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

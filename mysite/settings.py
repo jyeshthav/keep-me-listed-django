@@ -26,7 +26,7 @@ SECRET_KEY = '++gqf0^b428y*p1gsms*o46pcy9mzi9uhzb=2k+tp1&v90f3!^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['keepml.herokuapp.com']
+ALLOWED_HOSTS = ['']
 
 # DEFAULT TINYMCE CONFIG
 DEFAULT = {
@@ -136,14 +136,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'img')
-MEDIA_URL = '/img/'
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
-    STATIC_ROOT, MEDIA_ROOT,
+    os.path.join(STATIC_ROOT, 'static'),
 )
 
 #  Add configuration for static files storage using whitenoise

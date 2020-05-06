@@ -3,7 +3,7 @@ body, html {
 }
 
 body {
-  background-image: url("./../img/try13.jpg");
+  background-image: url("/static/main/img/forms.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

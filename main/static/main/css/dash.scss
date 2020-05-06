@@ -10,7 +10,7 @@ body, html{
 }
 body {
     background-color: map-get($map: $colors, $key: bg);
-    background-image: url('./../img/dash.jpg');
+    background-image: url('/static/main/img/dash.jpg');
     background-size: cover;
     background-position: left;
     background-repeat: no-repeat;
