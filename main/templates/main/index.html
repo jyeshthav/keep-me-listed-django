@@ -5,29 +5,81 @@
     <link rel="stylesheet" href="{% static 'main/css/materialize.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
+    <title>KeepMeListed</title>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{% static 'main/js/main.js' %}"></script>
             
 </head>
 
 <body>
+    <div class="bg-img"></div>
 
     {% include "main/includes/navbar.html" %}
 
     {% include "main/includes/messages.html" %}
-        <div class="container user">
+        <!-- <div class="container user">
             {% if user.is_authenticated %}
                 <h3>Welcome, {{ user.username }}</h3>
             {% else %}
                 <h3>Logged out</h3>
             {% endif %}
+        </div> -->
+    <div class="container introduction">
+        <div class="text1">
+            <h1>KeepMeListed</h1>
         </div>
     </div>
-<!-- <img src="{% static 'main/img/camera.jpg' %}" class="responsive-img"> -->
-
+    <div class="features">
+        <div class="layout">
+            <div class="layout__item layout__item--body">
+                <h2>Organize</h2>
+                <p>
+                Schedule all your tasks to be completed and 
+                never have to worry about missing out on anything. 
+                Last minute late submissions not anymore.
+                </p>
+            </div>
+            <div class="layout__item layout__item--figure">
+                <img src="{% static 'main/img/Organize.jpg' %}" alt="">
+            </div>
+            </div>
+            
+            <div class="layout">
+            <div class="layout__item layout__item--body">
+                <h2>Categorize</h2>
+                <p>
+                List tasks related to similar goals together.
+                One list for all your chores, one for your bills, 
+                and maybe one more for last minute revision.
+                </p>
+            </div>
+            <div class="layout__item layout__item--figure">
+                <img src="{% static 'main/img/Categorize.jpg' %}" alt="">
+            </div>
+            </div>
+            
+            <div class="layout">
+            <div class="layout__item layout__item--body">
+                <h2>Prioritize</h2>
+                <p>
+                Order all your tasks with a priority.
+                An automatically generated priority list 
+                for your most important tasks. Tailored as 
+                per your priorities.
+                </p>
+            </div>
+            <div class="layout__item layout__item--figure">
+                <img src="{% static 'main/img/Prioritize.jpg' %}" alt="">
+            </div>
+            </div>
+    </div>
+    <div class="container cta">
+        <div class="text3">
+            <h2>Like what you see?</h2>
+            <a href="/register" class="waves-effect waves-light btn pink darken-3">Sign up here!</a>
+        </div>
+    </div>
 </body>

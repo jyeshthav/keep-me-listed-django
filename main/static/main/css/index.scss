@@ -4,30 +4,146 @@ $colors :(
     cont: #bbdefb
 );
 
-body, html{
+$min-width: 15rem;
+
+body, html, .block{
     height: 100%;
 }
 body {
-    background-color: map-get($map: $colors, $key: bg);
-    background-image: url('/static/main/img/landing.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -1;
+
+    .bg-img{
+        background-image: url('/static/main/img/forms.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: -1;
+        filter: blur(2px);
+    }
     
     .user{
-        color: white;
+        color: black;
     }
 
     .navbar{
-        background-color: transparent;
+        background-color: map-get($map: $colors, $key: nav );
+        // opacity: 0.7;
     }
 
     .messages{
         background-color: transparent;
+        position: fixed;
     }
+
+    .introduction{
+        background-image: url('/static/main/img/landing.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        height: 100%;
+        position: relative;
+        text-align: center;
+    }
+
+    .features{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .cta{
+        background-image: url('/static/main/img/landing2.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        height: 100%;
+        position: relative;
+        text-align: center;
+    }
+
+    .text1{
+        position: absolute;
+        background-color: rgba(0,0,0,0.8);
+        color: white;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding-left: 10%;
+        padding-right: 10%;
+        border-style: double;
+        border-color: white;
+    }
+
+    .text3{
+        position: absolute;
+        color: white;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        vertical-align: middle;
+      }
+
+}
+
+
+// 1. Add horizontal and vertical spacing between items.
+// 2. Add vertical spacing between rows.
+// 3. Make the order of image / text alternate.
+// 4. Take all the available space.
+// 5. Require at least this amount of space or wrap.
+// 6. Prevent images from sticking to the right in single column mode.
+// 7. (Try to) take as much space as the content needs.
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -1em; // 1
+  margin-left: -3.5em; // 1
+  align-items: center;
+  
+  &:not(:first-of-type) {
+    margin-top: 3em; // 2
+  }
+  
+  &:nth-child(even) {
+    flex-direction: row-reverse; // 3
+  }
+  
+  &__item {
+    padding-top: 1em; // 1
+    padding-left: 3.5em; // 1
+    
+    &--body {
+      flex-grow: 9999; // 4
+      flex-basis: $min-width; // 5
+    }
+    
+    &--figure {
+      margin-right: auto; // 6
+      flex-grow: 1; // 7
+
+      @supports (max-width: max-content) {
+        min-width: $min-width; // 5
+        max-width: max-content;
+        flex-basis: $min-width; // 5
+        flex-grow: 99999;
+      }
+    }
+  }
+  
+  &__item {
+    * + * {
+      margin-top: 1em;
+    }
+  }
 }

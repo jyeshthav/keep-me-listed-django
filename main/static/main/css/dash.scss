@@ -2,7 +2,12 @@ $colors :(
     nav: #ad1457,
     bg: aliceblue,
     list: #b2ebf2,
-    task: #80deea
+    task: #80deea,
+    cont: #e0f7fa,
+    cbtn: #00838f,
+    plist: #ffe082,
+    ptask: #ffd54f,
+    pcont: #fff8e1
 );
 
 body, html{
@@ -22,8 +27,7 @@ body {
     color: white;
 
     .navbar{
-        background-color: transparent;
-        color: black;
+        background-color: map-get($map: $colors, $key: nav );
     }
 
     .messages{
@@ -36,11 +40,16 @@ body {
 
     .list{
         background-color: map-get($map: $colors, $key: list);
-        // opacity: 0.75;
 
         .task-cont{
             background-color: map-get($map: $colors, $key: task);
-            // opacity: 1.5;
+            .collection-item{
+                background-color: map-get($map: $colors, $key: cont);
+
+                button{
+                    background-color: map-get($map: $colors, $key: cbtn);
+                }
+            }
         }
 
         .checked{
@@ -53,5 +62,24 @@ body {
         }
     }
 
+    .priority{
+        background-color: map-get($map: $colors, $key: plist);
+
+        .task-cont{
+            background-color: map-get($map: $colors, $key: ptask);
+            .collection-item{
+                background-color: map-get($map: $colors, $key: pcont);
+            }
+        }
+
+        .checked{
+            color: #aaa;
+            text-decoration: line-through;
+        }
+        
+        .task{
+            cursor: pointer;
+        }
+    }
     
 }

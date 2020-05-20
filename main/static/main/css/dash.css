@@ -17,8 +17,7 @@ body {
 }
 
 body .navbar {
-  background-color: transparent;
-  color: black;
+  background-color: #ad1457;
 }
 
 body .messages {
@@ -37,12 +36,41 @@ body .list .task-cont {
   background-color: #80deea;
 }
 
+body .list .task-cont .collection-item {
+  background-color: #e0f7fa;
+}
+
+body .list .task-cont .collection-item button {
+  background-color: #00838f;
+}
+
 body .list .checked {
   color: #aaa;
   text-decoration: line-through;
 }
 
 body .list .task {
+  cursor: pointer;
+}
+
+body .priority {
+  background-color: #ffe082;
+}
+
+body .priority .task-cont {
+  background-color: #ffd54f;
+}
+
+body .priority .task-cont .collection-item {
+  background-color: #fff8e1;
+}
+
+body .priority .checked {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+body .priority .task {
   cursor: pointer;
 }
 /*# sourceMappingURL=dash.css.map */

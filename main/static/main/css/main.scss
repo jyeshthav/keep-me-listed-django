@@ -7,8 +7,7 @@ $colors :(
 body, html{
     height: 100%;
 }
-body {
-    // background-color: map-get($map: $colors, $key: nav);  
+body {  
     background-image: url('/static/main/img/forms.jpg');
     background-size: cover;
     background-position: center;
@@ -20,7 +19,6 @@ body {
     color: black;
 
     form{
-
         .input-field > label{
             color: black;
         }

@@ -1,5 +1,6 @@
 <head>
     {% load static %}
+    <title>KeepMeListed</title>
     <!-- <link rel="stylesheet" href="{% static 'tinymce/css/prism.css' %}"> -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="{% static 'main/css/materialize.css' %}">
@@ -23,10 +24,10 @@
     <div class="container">
         {% if user.is_authenticated %}
         <div class="row">
-            <div class="col s6">
+            <div class="col l6 m12 s12">
                 <h4>{{ user.username }}'s Lists</h4>
             </div>
-            <div class="col s3">
+            <div class="col l3 m6 s12">
                 <div class="switch">
                     <h4><label>Sort by:</label>
                     <label>
@@ -38,7 +39,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="col s3">
+            <div class="col l3 m6 s12">
                 <div class="container center">
                     <h4>
                         <a href="/list_form" class="waves-effect waves-light btn pink darken-3"><i class="material-icons left">add</i>List</a>
@@ -49,7 +50,7 @@
         {% include "main/lists.html" %}  
         {% else %}
         <div class="row">
-            <div class="col s6">
+            <div class="col l6 m6 s12">
                 <h4>User not authenticated</h4>
             </div>
         </div>
