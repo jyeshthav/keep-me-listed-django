@@ -39,6 +39,12 @@ function getBackground(){
 
 
 $(document).ready(function(){
+    
+    $(".dropdown-trigger").dropdown();
+
+    $(".dropdown-trigger").click(function(){
+        $(this).addClass('blue');
+    });
 
     $(function () {
         var $win = $(window);

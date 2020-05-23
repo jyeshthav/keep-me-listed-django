@@ -153,3 +153,16 @@ django_heroku.settings(locals())
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+
+import json
+
+with open('./main/static/main/creds.json', 'r') as openfile: 
+    json_object = json.load(openfile) 
+
+EMAIL_HOST_USER = json_object['username']
+EMAIL_HOST_PASSWORD = json_object['password']

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Tasklist, Lists
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib import messages
-from .forms import CustomUserForm, NewListForm, NewTaskForm
+from .forms import CustomUserForm, NewListForm, NewTaskForm, EditProfileForm
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -45,6 +45,40 @@ def register(request):
     return render(request = request,
                   template_name = "main/register.html",
                   context={"form":form})
+
+def edit(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            edit_user = form.save()
+            messages.info(request, f"Profile edited for: {edit_user.username}")
+            return redirect('/homepage')
+        messages.error(request, f"Form Invalid")
+        return redirect('/edit')
+
+    else:
+        form = EditProfileForm(instance=request.user)
+        data = {"form": form, "user": request.user}
+        return render(request=request,
+                    template_name = "main/account.html",
+                    context=data)
+
+def change_pass(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            new_pass = form.save()
+            update_session_auth_hash(request, form.user)
+            messages.info(request, f"Password changed for: {new_pass.username}")
+            return redirect('/homepage')
+        messages.error(request, f"Form Invalid")
+        return redirect('/change_pass')
+
+    else:
+        form = PasswordChangeForm(user=request.user)
+        return render(request=request,
+                    template_name = "main/registration/changepass.html",
+                    context={"form": form})
 
 def logout_request(request):
     logout(request)

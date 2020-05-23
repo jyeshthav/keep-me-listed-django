@@ -28,6 +28,11 @@ body {
 
     .navbar{
         background-color: map-get($map: $colors, $key: nav );
+
+        .dropdown-content{
+            width: max-content !important;
+            height:auto !important;
+         }
     }
 
     .messages{

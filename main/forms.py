@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from .models import Lists, Tasklist
 from datetime import datetime
@@ -9,7 +9,7 @@ class CustomUserForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ("username", "first_name", "last_name", "email", "password1", "password2", )
 
     def save(self, commit=True):
         user = super(CustomUserForm, self).save(commit=False)
@@ -37,3 +37,7 @@ class NewListForm(forms.ModelForm):
         model = Lists
         fields = ('list_name', 'list_summary',)
 
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ("username", "email", "first_name", "last_name", )

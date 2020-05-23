@@ -29,4 +29,8 @@ body .navbar {
 body .messages {
   background-color: transparent;
 }
+
+body table, body tr, body td {
+  border: 0;
+}
 /*# sourceMappingURL=main.css.map */

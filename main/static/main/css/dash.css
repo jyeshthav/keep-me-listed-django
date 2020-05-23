@@ -20,6 +20,13 @@ body .navbar {
   background-color: #ad1457;
 }
 
+body .navbar .dropdown-content {
+  width: -webkit-max-content !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+  height: auto !important;
+}
+
 body .messages {
   background-color: transparent;
 }
