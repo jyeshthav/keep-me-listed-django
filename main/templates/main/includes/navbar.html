@@ -1,17 +1,40 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script>
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+    });
+</script>
+
 <div class="navbar-fixed">
-    <nav class="nav-wrapper navbar">
-        <div class="container">
-            <a href="/" class="brand-logo">KeepMeListed</a> 
-            <ul class="right">
-                {% if user.is_authenticated %}
-                    <li><a href="/homepage" active>Home</a></li>
-                    <li><a href="/edit" id="dashboard">Account</a></li>
+    <nav>
+        <div class="nav-wrapper navbar">
+            <div class="container">
+                <a href="/" class="brand-logo">KeepMeListed</a>
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    {% if user.is_authenticated %}
+                    <li><a href="/homepage">Home</a></li>
+                    <li><a href="/edit" id="dashboard">Edit Profile</a></li>
                     <li><a href="/logout" id="logout">Logout</a></li>
-                {% else %}
+                    {% else %}
                     <li><a href="/register" id="register">Sign up</a></li>
-                    <li><a href="/login" id="login">Login</a></li>
-                {% endif %}
-            </ul>
-        </div>  
+                    <li><a href="/login" id="login">Login</a></li>      
+                    {% endif %}
+                </ul>
+            </div> 
+        </div> 
     </nav>
 </div>
+<ul id="slide-out" class="sidenav">
+    {% if user.is_authenticated %}
+        <li><a href="/homepage">Home</a></li>
+        <li><a href="/edit" id="dashboard">Edit Profile</a></li>
+        <li><a href="/logout" id="logout">Logout</a></li>
+    {% else %}
+        <li><a href="/register" id="register">Sign up</a></li>
+        <li><a href="/login" id="login">Login</a></li>      
+    {% endif %}
+</ul>

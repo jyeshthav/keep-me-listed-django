@@ -40,15 +40,15 @@ body .list {
 }
 
 body .list .task-cont {
-  background-color: #80deea;
+  background-color: #4dd0e1;
 }
 
-body .list .task-cont .collection-item {
+body .list .task-cont .collapsible-header {
+  background-color: #b2ebf2;
+}
+
+body .list .task-cont .collapsible-body {
   background-color: #e0f7fa;
-}
-
-body .list .task-cont .collection-item button {
-  background-color: #00838f;
 }
 
 body .list .checked {
@@ -68,7 +68,11 @@ body .priority .task-cont {
   background-color: #ffd54f;
 }
 
-body .priority .task-cont .collection-item {
+body .priority .task-cont .collapsible-header {
+  background-color: #ffe082;
+}
+
+body .priority .task-cont .collapsible-body {
   background-color: #fff8e1;
 }
 
@@ -79,5 +83,11 @@ body .priority .checked {
 
 body .priority .task {
   cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  body #slide-out {
+    background-color: #f7e8ed;
+  }
 }
 /*# sourceMappingURL=dash.css.map */

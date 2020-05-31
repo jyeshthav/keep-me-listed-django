@@ -2,8 +2,9 @@ $colors :(
     nav: #ad1457,
     bg: aliceblue,
     list: #b2ebf2,
-    task: #80deea,
-    cont: #e0f7fa,
+    task: #4dd0e1,
+    head: #b2ebf2,
+    cbdy: #e0f7fa,
     cbtn: #00838f,
     plist: #ffe082,
     ptask: #ffd54f,
@@ -48,12 +49,16 @@ body {
 
         .task-cont{
             background-color: map-get($map: $colors, $key: task);
-            .collection-item{
-                background-color: map-get($map: $colors, $key: cont);
 
-                button{
-                    background-color: map-get($map: $colors, $key: cbtn);
-                }
+            .collapsible-header{
+                background-color: map-get($map: $colors, $key: head);
+            }
+            .collapsible-body{
+                background-color: map-get($map: $colors, $key: cbdy);
+
+                // button{
+                //     background-color: map-get($map: $colors, $key: cbtn);
+                // }
             }
         }
 
@@ -72,7 +77,10 @@ body {
 
         .task-cont{
             background-color: map-get($map: $colors, $key: ptask);
-            .collection-item{
+            .collapsible-header{
+                background-color: map-get($map: $colors, $key: plist);
+            }
+            .collapsible-body{
                 background-color: map-get($map: $colors, $key: pcont);
             }
         }
@@ -86,5 +94,19 @@ body {
             cursor: pointer;
         }
     }
+
+    @media screen and (max-width: 1000px) {
+      
+        // h1{
+        //   font-size: 10vw;
+        // }
     
+        // h2{
+        //   font-size: 8vw;
+        // }
+
+        #slide-out{
+            background-color: #f7e8ed;
+        }
+      }
 }

@@ -1,16 +1,15 @@
 <head>
+    <title>KeepMeListed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <!-- <link rel="stylesheet" href="{% static 'tinymce/css/prism.css' %}"> -->
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="{% static 'main/css/materialize.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>KeepMeListed</title>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{% static 'main/js/main.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             
 </head>
 
@@ -20,13 +19,7 @@
     {% include "main/includes/navbar.html" %}
 
     {% include "main/includes/messages.html" %}
-        <!-- <div class="container user">
-            {% if user.is_authenticated %}
-                <h3>Welcome, {{ user.username }}</h3>
-            {% else %}
-                <h3>Logged out</h3>
-            {% endif %}
-        </div> -->
+
     <div class="container introduction">
         <div class="text1">
             <h1>KeepMeListed</h1>
@@ -78,8 +71,13 @@
     </div>
     <div class="container cta">
         <div class="text3">
+            {% if user.is_authenticated %}            
+            <h2>Get back to your account!</h2>
+            <a href="/homepage" class="waves-effect waves-light btn pink darken-3">Home</a>
+            {% else %}
             <h2>Like what you see?</h2>
             <a href="/register" class="waves-effect waves-light btn pink darken-3">Sign up here!</a>
+            {% endif %}
         </div>
     </div>
 </body>

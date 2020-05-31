@@ -1,3 +1,13 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<script>
+    $(document).ready(function(){
+        $('.collapsible').collapsible();
+    });
+</script>
+
 <div class="row list-container">
     <div class="col l4 m6 s12">
         <div class="card priority">
@@ -5,14 +15,18 @@
                 <span class="card-title">Priority List</span>
             </div>
             <div class="card-action task-cont">
-                <ul class="collection">
+                <ul class="collapsible">
                     {% for t in tasks %}
                         {% if t.task_priority > 7 %}
-                        <li class="collection-item" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
-                            <span class="task">{{ t.task_title }}</span>
-                            <p class="grey-text" name="due">Due: {{ t.task_due }}</p>
-                            <p class="grey-text">Priority: {{ t.task_priority }}</p>
-                            <p class="grey-text">List: {{ t.task_list }}</p>
+                        <li>
+                            <div class="collapsible-header" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
+                                <span class="task">{{ t.task_title }}</span>
+                            </div>
+                            <div class="collapsible-body">
+                                <span>Due: {{ t.task_due }}</span><br>
+                                <span>Priority: {{ t.task_priority }}</span><br>
+                                <span>List: {{ t.task_list }}</span>
+                            </div>
                         </li>
                         {% endif %}
                     {% endfor %}
@@ -25,25 +39,30 @@
             <div class="card list">
                 <form action='/delete_list' method='GET'>
                     <input type="hidden" name="list_name" value="{{ l.list_name }}"></input>
-                <button class="waves-effect waves-teal btn-flat right"><i class="material-icons">clear</i></button> 
+                <button class="waves-effect waves-teal btn-flat right"><i class="material-icons">delete</i></button> 
                 </form>
                 <div class="card-content">
                     <span class="card-title">{{ l.list_name }}</span>
                     <p>{{ l.list_summary }}</p>
                 </div>
                 <div class="card-action task-cont"> 
-                    <ul class="collection">
+                    <ul class="collapsible expandable">
                         {% for t in tasks %}
                             {% if t.task_list == l.list_name %}
-                            <li class="collection-item" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
-                                <span class="task">{{ t.task_title }}</span>
-                                <form action='/delete_task' method='GET'>
-                                    <input type="hidden" name="task_title" value="{{ t.task_title }}"></input>
-                                    <input type="hidden" name="task_list" value="{{ t.task_list }}"></input>
-                                    <button type='submit' class='btn-small right'><i class="material-icons">clear</i></button>
-                                </form>
-                                <p class="grey-text" name="due">Due: {{ t.task_due }}</p>
-                                <p class="grey-text">Priority: {{ t.task_priority }}</p>
+                            <li>
+                                <div class="collapsible-header" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
+                                    <span class="task">{{ t.task_title }}</span>
+                                </div>
+                                <div class="collapsible-body">
+                                    <span>Due: {{ t.task_due }}</span><br>
+                                    <span>Priority: {{ t.task_priority }}</span><br>
+                                    <button class="btn-flat status-btn" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
+                                        <i class="material-icons">done_outline</i></button>
+                                    <button class="btn-flat edit-btn" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
+                                        <i class="material-icons">create</i></button>
+                                    <button class="btn-flat delete-btn" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
+                                        <i class="material-icons">delete</i></button>
+                                </div>
                             </li>
                             {% endif %}
                         {% endfor %}

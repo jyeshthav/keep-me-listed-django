@@ -1,2 +1,3 @@
 creds.py
 main/static/main/creds.json
+db.sqlite3

@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request=request,
                 template_name='main/index.html',
-                # context={'user' : user}
+                context={'user' : request.user}
                 )
 
 def homepage(request):
@@ -147,14 +147,12 @@ def task_form(request):
                     context={'form': form})
 
 def delete_task(request):
-
-    user = request.user
-    tlist = request.GET.get('task_list')
-    title = request.GET.get('task_title')
-    del_task = get_object_or_404(Tasklist, task_title=title, task_list=tlist, task_owner=user)
-
-    del_task.delete()     
-    return redirect('/homepage')
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        tlist = request.POST.get('tlist')
+        del_task = get_object_or_404(Tasklist, task_title=title, task_list=tlist, task_owner=request.user)
+        succ = del_task.delete()
+        return HttpResponse(succ)
 
 def delete_list(request):
     user = request.user

@@ -33,4 +33,16 @@ body .messages {
 body table, body tr, body td {
   border: 0;
 }
+
+@media screen and (max-width: 1000px) {
+  body h1 {
+    font-size: 10vw;
+  }
+  body h2 {
+    font-size: 8vw;
+  }
+  body #slide-out {
+    background-color: #f7e8ed;
+  }
+}
 /*# sourceMappingURL=main.css.map */
