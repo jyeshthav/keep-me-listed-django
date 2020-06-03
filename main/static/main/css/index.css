@@ -30,7 +30,7 @@ body .messages {
 }
 
 body .introduction {
-  background-image: url("/static/main/img/landing.jpg");
+  background-image: url("/static/main/img/landing_small.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -46,7 +46,7 @@ body .features {
 }
 
 body .cta {
-  background-image: url("/static/main/img/landing2.jpg");
+  background-image: url("/static/main/img/landing2_small.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

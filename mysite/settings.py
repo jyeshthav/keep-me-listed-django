@@ -159,10 +159,10 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
 
-import json
+# import json
 
-with open('./main/static/main/creds.json', 'r') as openfile: 
-    json_object = json.load(openfile) 
+# with open('./main/static/main/creds.json', 'r') as openfile: 
+#     json_object = json.load(openfile) 
 
-EMAIL_HOST_USER = json_object['username']
-EMAIL_HOST_PASSWORD = json_object['password']
+# EMAIL_HOST_USER = json_object['username']
+# EMAIL_HOST_PASSWORD = json_object['password']
