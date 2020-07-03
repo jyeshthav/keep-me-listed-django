@@ -46,7 +46,7 @@ $(document).ready(function(){
                     request.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
                 },
                 success: function(result){
-                    $('.list-container').html(result)
+                    $('.list-container').html(result);
                 },
             });
         }

@@ -35,6 +35,7 @@ urlpatterns = [
     path('delete_list', views.delete_list, name="delete_list"),
     path('status', views.status, name="status"),
     path('sortby', views.sortby, name="sortby"),
+    path('edit_task', views.edit_task, name="edit_task"),
 
     # path('password-reset/', auth_views.PasswordResetView.as_view(
     #                         template_name='main/registration/password_reset_form.html',

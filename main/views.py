@@ -139,7 +139,7 @@ def task_form(request):
             return redirect('/homepage')
 
         else:
-            messages.error(request, "List form entry invalid")
+            messages.error(request, "Task form entry invalid")
     
     form = NewTaskForm()
     return render(request = request,
@@ -188,3 +188,29 @@ def sortby(request):
         return render(request = request,
                     template_name = "main/lists.html",
                     context=data)
+
+def edit_task(request):
+
+    if request.method == 'POST':
+        otask = request.GET.get('task_name')
+        oprio = request.GET.get('task_priority')
+        olist = request.GET.get('task_list')
+        form = NewTaskForm(request.POST)
+        if form.is_valid():
+            target = get_object_or_404(Tasklist, task_list=olist, task_title=otask, task_priority=oprio)
+            if target.task_owner == request.user:
+                upd_task = form.save(commit=False)
+                upd_task.task_list = request.GET.get('task_list')
+                upd_task.task_owner = request.user
+                upd_task.save()
+                target.delete()
+                messages.success(request, f"Task updated for: {request.user.username}")
+                return redirect('/homepage')
+
+            else:
+                messages.error(request, "You ain't authorised bruh")
+    
+    form = NewTaskForm()
+    return render(request = request,
+                    template_name = "main/edit_task.html",
+                    context={'form': form})

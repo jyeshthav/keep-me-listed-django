@@ -1,13 +1,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+{% load static %}
+<script src="{% static 'main/js/dash.js' %}"></script>
+  
 <script>
     $(document).ready(function(){
         $('.collapsible').collapsible();
     });
 </script>
-
 <div class="row list-container">
     <div class="col l4 m6 s12">
         <div class="card priority">
@@ -56,12 +57,19 @@
                                 <div class="collapsible-body">
                                     <span>Due: {{ t.task_due }}</span><br>
                                     <span>Priority: {{ t.task_priority }}</span><br>
-                                    <button class="btn-flat status-btn" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
-                                        <i class="material-icons">done_outline</i></button>
-                                    <button class="btn-flat edit-btn" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
-                                        <i class="material-icons">create</i></button>
-                                    <button class="btn-flat delete-btn" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
-                                        <i class="material-icons">delete</i></button>
+                                    
+                                    <form action='/edit_task' method='GET' class="center">
+                                        <input type="hidden" name="task_list" value="{{ l.list_name }}"></input>
+                                        <input type="hidden" name="task_name" value="{{ t.task_title }}"></input>
+                                        <input type="hidden" name="task_priority" value="{{ t.task_priority }}"></input>
+                                        <input type="hidden" name="task_due" value="{{ t.task_due }}"></input>
+                                        <button type="submit" class="btn-flat edit-btn"><i class="material-icons">create</i></button>
+                                        <button class="btn-flat status-btn" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
+                                            <i class="material-icons">done_outline</i></button>
+                                        <button class="btn-flat delete-btn" task-status="{{ t.task_status }}" title="{{ t.task_title }}" list="{{ t.task_list }}" owner="{{ t.task_owner }}">
+                                            <i class="material-icons">delete</i></button>
+                                    </form>
+                                    
                                 </div>
                             </li>
                             {% endif %}
